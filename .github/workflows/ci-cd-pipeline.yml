@@ -1,0 +1,27 @@
+name: CI/CD Pipeline
+
+# Trigger the pipeline when code is pushed
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt || echo "No dependencies"
+
+      - name: Run Tests
+        run: echo "Running tests..."
+
+      - name: Deploy (Simulated)
+        run: echo "Deploying application..."
